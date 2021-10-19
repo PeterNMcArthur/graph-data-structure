@@ -1,4 +1,3 @@
-import * as R from 'ramda';
 /*
 The Problem
 
@@ -32,20 +31,21 @@ export const guidedApproach = (
     );
 };
 
-export const shouldAddCompanyId =
-  (companyIds: string[], newCompanyIds: string[], { id, parentId }: Company) =>
-      companyIds.includes(parentId) && !newCompanyIds.includes(id)
+export const shouldAddCompanyId = (
+  companyIds: string[],
+  { id, parentId }: Company,
+  newCompanyIds: string[],
+) => companyIds.includes(parentId) && !newCompanyIds.includes(id)
 
 export const chaosApproach = (
   companies: Company[],
-  companyIds: string[],
+  parentIds: string[],
 ) => companies
   .reduce((acc, company) =>
-      shouldAddCompanyId(companyIds, acc, company)
+      shouldAddCompanyId(parentIds, company, acc)
         ? chaosApproach(companies, [...acc, company.id])
         : acc,
-    companyIds);
-
+    parentIds);
 
 /*
 {

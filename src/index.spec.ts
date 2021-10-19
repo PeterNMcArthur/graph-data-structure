@@ -33,9 +33,9 @@ describe('shouldAddCompanyId', () => {
       { id: "c5", name: "Small Corp A", parentId: "c3" },
       { id: "c6", name: "Small Corp B", parentId: "c3" },
     ];
-    expect(shouldAddCompanyId(['c1'], ['c1', 'c3'], companies[2])).toBe(false);
-    expect(shouldAddCompanyId(['c1'], ['c1'], companies[2])).toBe(true);
-    expect(shouldAddCompanyId(['c1'], [], companies[2])).toBe(true);
+    expect(shouldAddCompanyId(['c1'], companies[2], ['c1', 'c3'])).toBe(false);
+    expect(shouldAddCompanyId(['c1'], companies[2], ['c1'])).toBe(true);
+    expect(shouldAddCompanyId(['c1'], companies[2], [])).toBe(true);
   });
 });
 
